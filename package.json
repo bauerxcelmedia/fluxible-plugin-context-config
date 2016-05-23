@@ -1,18 +1,18 @@
 {
-  "name": "fluxible-plugin-config",
-  "version": "1.0.0",
+  "name": "fluxible-plugin-context-config",
+  "version": "1.1.0-beta-4",
   "description": "Fluxible plugin that adds a config to component, store and action contexts.",
-  "main": "lib/fluxible-plugin-config.js",
+  "main": "lib/index.js",
   "scripts": {
     "test": "node ./node_modules/babel-cli/bin/babel-node.js ./node_modules/babel-istanbul/lib/cli cover --root ./src --include-all-sources --report html ./node_modules/mocha/bin/_mocha -- --recursive --check-leaks",
-    "tdd": "mocha --require babel-polyfill --require babel-register --recursive --check-leaks --watch",
     "lint": "node ./node_modules/eslint/bin/eslint.js src/ test/",
     "prebuild": "rimraf lib/ coverage/",
-    "build": "node ./node_modules/babel-cli/bin/babel.js src --out-dir lib"
+    "build": "node ./node_modules/babel-cli/bin/babel.js src --out-dir lib",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bauerxcelmedia/fluxible-plugin-config.git"
+    "url": "git+https://github.com/bauerxcelmedia/fluxible-plugin-context-config.git"
   },
   "keywords": [
     "fluxible",
@@ -29,6 +29,7 @@
     "babel-cli": "^6.9.0",
     "babel-eslint": "^6.0.4",
     "babel-istanbul": "^0.8.0",
+    "babel-plugin-transform-object-rest-spread": "^6.8.0",
     "babel-preset-es2015": "^6.9.0",
     "chai": "^3.5.0",
     "eslint": "^2.10.2",

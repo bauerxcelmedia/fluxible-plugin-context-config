@@ -13,9 +13,10 @@ export default function (config) {
                     storeContext.config = config; /* eslint no-param-reassign: "off" */
                 },
                 dehydrate() {
-                    if (config.secret) delete config.secret;
+                    const dehydratedConfig = { ...config };
+                    if (dehydratedConfig.secret) delete dehydratedConfig.secret;
                     return {
-                        config
+                        config: dehydratedConfig
                     };
                 }
             };
