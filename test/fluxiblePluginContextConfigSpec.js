@@ -1,33 +1,30 @@
-import { expect } from 'chai';
 import configPlugin from '../src/index';
+import isEqual from 'lodash.isequal';
 
 describe('contextConfigPlugin', () => {
     const config = { big: 'mac', secret: 'password' };
     const plugin = configPlugin(config);
+    const dehydratedConfig = plugin.plugContext().dehydrate().config;
 
-    it('has a dehydrate method which returns the config', () => {
-        expect(plugin.plugContext().dehydrate().config.big === config.big);
-    });
+    it('has a dehydrate method which returns the config', () => dehydratedConfig.big === config.big);
 
-    it('has a dehydrate method that deletes a secret', () => {
-        expect(plugin.plugContext().dehydrate().config).to.not.have.property('secret');
-    });
+    it('has a dehydrate method that deletes a secret', () => !dehydratedConfig.secret);
 
     it('gives components access to the config via the context', () => {
         const componentContext = {};
         plugin.plugContext().plugComponentContext(componentContext);
-        expect(componentContext.config).to.deep.equal(config);
+        return (isEqual(componentContext.config, config));
     });
 
     it('gives actions access to the config via the context', () => {
         const actionContext = {};
         plugin.plugContext().plugActionContext(actionContext);
-        expect(actionContext.config).to.deep.equal(config);
+        return (isEqual(actionContext.config, config));
     });
 
     it('gives stores access to the config via the context', () => {
         const storeContext = {};
         plugin.plugContext().plugStoreContext(storeContext);
-        expect(storeContext.config).to.deep.equal(config);
+        return (isEqual(storeContext.config, config));
     });
 });
