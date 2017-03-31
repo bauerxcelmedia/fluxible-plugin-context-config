@@ -23,6 +23,12 @@ const config = {
 app.plug(configPlugin(config));
 ```
 
+On the client add the plugin but do not pass in a config like the server. Client state will be automatically rehydrated.
+
+```js
+app.plug(configPlugin());
+```
+
 Access the config object on the action, store or component contexts:
 
 ```javascript
