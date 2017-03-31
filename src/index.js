@@ -1,7 +1,8 @@
-export default function (config) {
+export default function (init) {
     return {
         name: 'configPlugin',
         plugContext() {
+            var config = init;
             return {
                 plugComponentContext(componentContext) {
                     componentContext.config = config; /* eslint no-param-reassign: "off" */
@@ -13,11 +14,12 @@ export default function (config) {
                     storeContext.config = config; /* eslint no-param-reassign: "off" */
                 },
                 dehydrate() {
-                    const dehydratedConfig = { ...config };
-                    if (dehydratedConfig.secret) delete dehydratedConfig.secret;
-                    return {
-                        config: dehydratedConfig
-                    };
+                    const config = { ...init };
+                    if (config.secret) delete config.secret;
+                    return { config };
+                },
+                rehydrate(state) {
+                    config = state.config;
                 }
             };
         }
