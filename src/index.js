@@ -2,7 +2,7 @@ export default function (init) {
     return {
         name: 'configPlugin',
         plugContext() {
-            var config = init;
+            let config = { ...init };
             return {
                 plugComponentContext(componentContext) {
                     componentContext.config = config; /* eslint no-param-reassign: "off" */
@@ -14,9 +14,9 @@ export default function (init) {
                     storeContext.config = config; /* eslint no-param-reassign: "off" */
                 },
                 dehydrate() {
-                    const config = { ...init };
-                    if (config.secret) delete config.secret;
-                    return { config };
+                    const configCopy = { ...config };
+                    if (configCopy.secret) delete configCopy.secret;
+                    return { config: configCopy };
                 },
                 rehydrate(state) {
                     config = state.config;
