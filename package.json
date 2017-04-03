@@ -10,6 +10,9 @@
     "build": "node ./node_modules/babel-cli/bin/babel.js src --out-dir lib",
     "prepublish": "npm run build"
   },
+  "publishConfig":{
+    "registry":"https://registry.npmjs.org/"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bauerxcelmedia/fluxible-plugin-context-config.git"
