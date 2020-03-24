@@ -1,6 +1,6 @@
 {
   "name": "fluxible-plugin-context-config",
-  "version": "2.0.0",
+  "version": "2.3.0",
   "description": "Fluxible plugin that adds a config to component, store and action contexts.",
   "main": "lib/index.js",
   "scripts": {
@@ -15,7 +15,7 @@
     "postrelease": "npm publish && git push --follow-tags"
   },
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
+    "registry": "http://npm.digital.bauer-media.net.au"
   },
   "repository": {
     "type": "git",
